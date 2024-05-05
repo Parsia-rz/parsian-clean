@@ -3419,16 +3419,19 @@ i#play{
 
   .image-cards-wrapper{
     margin-bottom: 70px;
+    margin-top: 70px;
   }
   .image-card-container{
     position: relative;
     border-radius: 16px;
     background-color: #fff;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    padding: 120px 1.5rem 1.5rem 1.5rem ;
+    /* padding: 120px 1.5rem 1.5rem 1.5rem ; */
+    padding: 1.5rem;
     /* cursor: pointer; */
     transition: 400ms;
-    margin-top: 165px;
+    /* margin-top: 165px; */
+    margin-top: 30px;
   }
   .image-card-container:hover{
         transform: translateY(-10px);
@@ -3446,7 +3449,7 @@ i#play{
     margin: 0 auto;
     transition: 300ms;
   }
-  @media (max-width:992px){
+  /* @media (max-width:992px){
     .image-card__banner img{
         width: 300px;
         top: -60px;
@@ -3497,7 +3500,7 @@ i#play{
 
   .image-card-container:hover .image-card__banner img{
     top: -120px;
-  }
+  } */
   .image-card__title{
     color: #212529;
     font-weight: bold;
