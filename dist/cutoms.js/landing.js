@@ -35,6 +35,7 @@ requestBtns.forEach(function(btn){
 const selectBoxBtn = document.querySelector(".select-box__btn");
 const selectBox = document.querySelector(".select-box");
 const selectBoxItem = document.querySelectorAll(".select-box__item");
+
 selectBox.addEventListener("click", function () {
   this.classList.toggle("active");
 });
@@ -49,7 +50,8 @@ document.body.addEventListener("mouseup", function (e) {
   if (!selectBox.contains(e.target)) {
     selectBox.classList.remove("active");
   }
-});
+});  
+
 
 // request form input validation
 
@@ -144,6 +146,29 @@ function openFaqs() {
   })
 }
 openFaqs();
+
+// call fixed button 
+function showNumber(){
+  const callButton = document.querySelector('.call-fixed-button');
+  const showNumber = document.querySelector('.show-number');
+  const showNumberCloseButton = document.querySelector('.show-number__close-button');
+  callButton.addEventListener('click' , function(){
+    showNumber.classList.add('active');
+  });
+  showNumberCloseButton.addEventListener('click' , function(){
+    showNumber.classList.remove('active')
+  })
+
+}
+showNumber();
+
+
+// spinner loader
+
+window.addEventListener('load' , function(){
+  const spinnerLoader = this.document.querySelector('.spinner-container');
+  spinnerLoader.style.display = 'none';
+})
 
 
 

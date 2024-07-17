@@ -1,183 +1,160 @@
-// const image = document.querySelector("#cover");
-// const title = document.getElementById("title");
-// const artist = document.getElementById("artist");
-// const music = document.querySelector("audio");
-// const currentTimeEl = document.getElementById("current-time");
-// const durationEl = document.getElementById("duration");
-// const progress = document.getElementById("progress");
-// const progressContainer = document.getElementById("progress-container");
-// const prevBtn = document.getElementById("prev");
-// const playBtn = document.getElementById("play");
-// const nextBtn = document.getElementById("next");
-// const background = document.getElementById("background");
+let userVoices = [
+  {
+      id: 1,
+      name: 'خانم خاکی',
+      service: 'نگهداری سالمند پوشکی',
+      voice: '/dist/assets/landing-page/elderly-nurse/audio/voice-message-2.ogg'
+  },
+  {
+      id: 2,
+      name: 'خانم قائمی',
+      service: 'امور منزل و آشپزی',
+      voice: '/dist/assets/landing-page/elderly-nurse/audio/voice-message-3.ogg'
+  },
+  {
+      id: 3,
+      name: 'خانم تورج',
+      service: 'امور منزل و کودک',
+      voice: '/dist/assets/landing-page/elderly-nurse/audio/voice-message-4.ogg'
+  },
+  {
+      id: 4,
+      name: 'آقای غنی پور',
+      service: 'امور منزل و آشپزی',
+      voice: '/dist/assets/landing-page/elderly-nurse/audio/voice-messgage-1.ogg'
+  },
+];
 
-// // Music
-// const songs = [
-//   {
-//     path:
-//       "/dist/assets/landing-page/elderly-nurse/audio/voice-message-1.ogg",
-//     displayName: "خانم خاکی",
-//     artist: "خدمات ارائه شده : پرستار سالمند پوشکی",
-//     // cover:
-//     //   "../dist/assets/landing-page/header-cover-1.jpg",
-//   },
-//   {
-//     path: "/dist/assets/landing-page/elderly-nurse/audio/voice-message-2.ogg",
-//     displayName: "خانم باقری",
-//     artist: "خدمات ارائه شده : امور آشپزی و منزل",
-//     // cover: "https://picsum.photos/id/1076/600/400",
-//   },
-// ];
-
-// // Check if Playing
-// let isPlaying = false;
-
-// // Play
-// function playSong() {
-//   isPlaying = true;
-// //   playBtn.classList.replace("fa-play", "fa-pause");
-//   playBtn.className = 'bi bi-pause-fill'
-// //   playBtn.setAttribute("title", "Pause");
-//   music.play();
-// }
-
-// // Pause
-// function pauseSong() {
-//   isPlaying = false;
-//   playBtn.className = 'bi bi-play';
-// //   playBtn.setAttribute("title", "Play");
-//   music.pause();
-// }
-
-// // Play or Pause Event Listener
-// playBtn.addEventListener("click", function () {
-//   if (isPlaying) {
-//     pauseSong()
-//   } else {
-//     playSong()
-//   }
-// })
-
-// // Update DOM
-// function loadSong(song) {
-//   console.log(song);
-//   title.textContent = song.displayName;
-//   artist.textContent = song.artist;
-//   music.src = song.path;
-//   // changeCover(song.cover);
-// }
-
-// // function changeCover(cover) {
-// //   image.classList.remove("active");
-// //   setTimeout(() => {
-// //     image.src = cover;
-// //     image.classList.add("active");
-// //   }, 100);
-// //   background.src = cover;
-// // }
-
-// // Current Song
-// let songIndex = 0;
-
-// // Previous Song
-// function prevSong() {
-//   songIndex--;
-//   if (songIndex < 0) {
-//     songIndex = songs.length - 1;
-//   }
-//   loadSong(songs[songIndex]);
-//   playSong();
-// }
-
-// // Next Song
-// function nextSong() {
-//   songIndex++;
-//   if (songIndex > songs.length - 1) {
-//     songIndex = 0;
-//   }
-//   loadSong(songs[songIndex]);
-//   playSong();
-// }
-
-// // On Load - Select First Song
-// loadSong(songs[songIndex]);
-
-// // Update Progress Bar & Time
-// function updateProgressBar(e) {
-//   if (isPlaying) {
-//     const duration = e.srcElement.duration;
-//     const currentTime = e.srcElement.currentTime;
-//     // Update progress bar width
-//     const progressPercent = (currentTime / duration) * 100;
-//     progress.style.width = progressPercent + "%";
-//     // Calculate display for duration
-//     const durationMinutes = Math.floor(duration / 60);
-//     let durationSeconds = Math.floor(duration % 60);
-//     if (durationSeconds < 10) {
-//       durationSeconds = "0" + durationSeconds;
-//     }
-//     // Delay switching duration Element to avoid NaN
-//     if (durationSeconds) {
-//       durationEl.textContent = durationMinutes + ":" + durationSeconds;
-//     }
-//     // Calculate display for currentTime
-//     const currentMinutes = Math.floor(currentTime / 60);
-//     let currentSeconds = Math.floor(currentTime % 60);
-//     if (currentSeconds < 10) {
-//       currentSeconds = "0" + currentSeconds;
-//     }
-//     currentTimeEl.textContent = currentMinutes + ":" + currentSeconds;
-//   }
-// }
-
-// // Set Progress Bar
-// function setProgressBar(e) {
-//   const width = this.clientWidth;
-//   const clickX = e.offsetX;
-//   const duration = music.duration;
-//   music.currentTime = (clickX / width) * duration;
-// }
-
-// // Event Listeners
-// prevBtn.addEventListener("click", prevSong);
-// nextBtn.addEventListener("click", nextSong);
-// music.addEventListener("ended", nextSong);
-// music.addEventListener("timeupdate", updateProgressBar);
-// progressContainer.addEventListener("click", setProgressBar);
-
-
-const playBtns = document.querySelectorAll('#play');
-let currentAudio = null;
-
-playBtns.forEach(function(btn) {
-  btn.addEventListener('click', function(e) {
-    const voiceMessageContent = e.target.closest('.voice-message-content');
-    const voiceMessage = voiceMessageContent.querySelector('audio');
-    
-    if (currentAudio && currentAudio !== voiceMessage) {
-      pauseAudio(currentAudio, currentAudio.nextElementSibling);
-      
-    }
-    
-    if (voiceMessage.paused) {
-      playAudio(voiceMessage);
-      btn.classList.replace('bi-play', 'bi-pause-fill');
-      currentAudio = voiceMessage;
-    } else {
-      pauseAudio(voiceMessage);
-      btn.classList.replace('bi-pause-fill', 'bi-play');
-      currentAudio = null;
-    }
-  });
+const voiceMessageContainer = document.querySelector('.voice-message-wrapper');
+userVoices.forEach(function(user) {
+  voiceMessageContainer.innerHTML += `
+      <div class="col-sm-6 col-md-3 mt-10">
+          <div class="voice-message-content w-100">
+              <!--begin::voice player-->
+              <div class="player-container">
+               <!-- voice cover -->
+                    <div class="cover-container">
+                      <svg
+                        class="cover-container__icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512"
+                      >
+                        <g id="Layer_2" data-name="Layer 2">
+                          <g id="Layer_1-2" data-name="Layer 1">
+                            <path
+                              d="M0,373c2.44-4.19,5.68-7.23,10.9-5.65s6.38,5.71,6.17,10.66c-.17,4-.17,8,0,12,.22,4.95-1,9.1-6.17,10.67S2.46,399.16,0,395Z"
+                            />
+                            <path
+                              d="M512,395c-2.47,4.14-5.68,7.24-10.91,5.64s-6.38-5.72-6.16-10.67c.18-4,.18-8,0-12-.22-4.95,1-9.1,6.17-10.66s8.44,1.49,10.9,5.65Z"
+                            />
+                            <path
+                              d="M111,384c0,11.15,0,22.31,0,33.46,0,4.73-2.26,8-7.05,8.95-4.08.8-7.21-.94-9-4.61A11.5,11.5,0,0,1,94,417q-.08-33,0-65.93c0-5.86,3.48-9.7,8.45-9.71s8.49,3.86,8.54,9.69C111,362,111,373,111,384Z"
+                            />
+                            <path
+                              d="M76.86,384.41c0,10.82.11,21.64,0,32.46-.09,7.18-5.42,11.38-11.39,9.19a7.93,7.93,0,0,1-5.59-8c0-22.65-.07-45.29,0-67.93,0-5.16,3.65-8.72,8.31-8.77s8.54,3.62,8.62,9.1C77,361.76,76.86,373.09,76.86,384.41Z"
+                            />
+                            <path
+                              d="M25.69,383.82c0-5.5-.12-11,0-16.5.16-5.29,3.52-8.76,8.21-8.87a8.32,8.32,0,0,1,8.66,8.48q.39,17,0,34a8.37,8.37,0,0,1-8.54,8.63c-4.85,0-8.23-3.63-8.38-9.24S25.68,389.32,25.69,383.82Z"
+                            />
+                            <path
+                              d="M486.32,384.11c0,5.34.1,10.67,0,16-.13,5.69-3.36,9.28-8.2,9.43-5,.16-8.71-3.56-8.79-9.42q-.24-16.25,0-32.49c.09-5.58,3.69-9.17,8.53-9.18s8.17,3.58,8.46,9.17c0,.33,0,.67,0,1Q486.33,376.36,486.32,384.11Z"
+                            />
+                            <path
+                              d="M512,177c-.45,1.75-.92,3.5-1.34,5.26C505,205.62,485,221.62,460.54,221.87c-21.33.22-42.66-.05-64,.17a15.1,15.1,0,0,0-8.13,2.67c-23.82,17.09-47.49,34.38-71.2,51.61-.94.69-1.92,1.33-2.82,2.06-3.46,2.82-7.16,4.42-11.45,2s-4.46-6.63-3.92-10.95q2.76-21.81,5.47-43.62c.14-1.11.19-2.24.29-3.45-7.69-.41-15.21-.31-22.57-1.31-24.14-3.3-43-24.43-43.14-48.9q-.44-61,0-122C239.19,26.33,256.35,6.06,279.8,1A31.39,31.39,0,0,0,283,0H468a22.58,22.58,0,0,0,2.67,1C492,6,505.3,19.23,510.86,40.35c.33,1.23.76,2.43,1.14,3.65ZM318.13,254.58l42.56-31c11.44-8.33,22.85-16.71,34.34-25,5.56-4,11.66-2.89,13.62,2.85,1.11,3.28,2.87,3.39,5.49,3.38,15.16-.05,30.32.07,45.48-.05,20.58-.16,35.27-14.84,35.32-35.38q.12-58.47,0-116.94c0-20.85-14.74-35.41-35.67-35.48-16.82-.06-33.65,0-50.47,0-39.32,0-78.63-.07-117.94,0-19.31.05-34.66,14.53-34.76,33.27q-.35,60.71,0,121.43A33,33,0,0,0,284.18,204c7.35,1.1,14.91.8,22.28,1.14l1.35-3.26c1.75-4.22,4.88-6.29,9.44-5.54,4.39.72,7,4.21,6.85,9a57,57,0,0,1-.59,6C321.77,225.38,320,239.41,318.13,254.58Z"
+                            />
+                            <path
+                              d="M236,512c-4.37-2.74-5.74-6.71-5.73-11.8q.14-116.22.09-232.44a19.83,19.83,0,0,1,.65-5.92,8.33,8.33,0,0,1,16.07.85,24.21,24.21,0,0,1,.34,5q0,116.22.09,232.44c0,5-1.22,9.06-5.51,11.9Z"
+                            />
+                            <path
+                              d="M270,512c-4.28-2.84-5.52-6.84-5.51-11.89q.17-116.22.09-232.44a25.08,25.08,0,0,1,.33-5,8.33,8.33,0,0,1,16.07-.85,19.83,19.83,0,0,1,.66,5.92q0,116.22.09,232.44c0,5.08-1.36,9.06-5.73,11.8Z"
+                            />
+                            <path
+                              d="M298.75,383.56q0-32,0-64a39.5,39.5,0,0,1,.15-5c.58-4.42,3.4-6.9,7.62-7.3a7.66,7.66,0,0,1,8.5,5.52,20.67,20.67,0,0,1,.76,6.39q.06,64.73,0,129.44a23.38,23.38,0,0,1-.57,5.92c-1.16,4.27-4.31,6.26-8.58,6.17s-7.34-3.39-7.78-7.72a48.76,48.76,0,0,1-.12-5Z"
+                            />
+                            <path
+                              d="M213.25,384.41c0,21.83.07,43.65-.09,65.47,0,2.66-.64,5.83-2.17,7.87-3.85,5.14-11.92,3.56-14-2.57a21.92,21.92,0,0,1-.76-6.88q-.06-64.23,0-128.45c0-1,0-2,0-3,.25-5.84,3.69-9.69,8.63-9.67s8.37,3.79,8.39,9.75C213.28,339.43,213.24,361.92,213.25,384.41Z"
+                            />
+                            <path
+                              d="M179.12,384c0,16.8.08,33.61,0,50.42-.05,7.36-6.91,11.86-12.47,8-2.22-1.55-4.31-5.07-4.33-7.72-.29-33.78-.23-67.56-.14-101.34,0-5.4,3.87-9.14,8.64-9.06s8.28,3.79,8.31,9.32C179.16,350.38,179.12,367.19,179.12,384Z"
+                            />
+                            <path
+                              d="M332.88,383.77q0-24.47,0-48.92c0-6.65,3.32-10.68,8.56-10.6,5.07.07,8.45,4.05,8.45,10.31q.06,49.41,0,98.84c0,8.1-6.52,12.73-12.71,9.18-3.4-2-4.36-5.11-4.35-8.9C332.92,417.05,332.88,400.41,332.88,383.77Z"
+                            />
+                            <path
+                              d="M418.08,384c0,10.82,0,21.64,0,32.46,0,6.28-3.35,10.21-8.47,10.21s-8.52-4-8.54-10.19q-.06-32.46,0-64.94c0-6.23,3.42-10.2,8.53-10.2s8.46,3.93,8.48,10.19C418.11,362.34,418.08,373.16,418.08,384Z"
+                            />
+                            <path
+                              d="M452.18,384.28c0,10.66,0,21.31,0,32,0,6.43-3.12,10.25-8.24,10.39-5.28.15-8.77-3.9-8.79-10.47q-.06-32.21,0-64.43c0-6.34,3.26-10.26,8.36-10.41,5.27-.15,8.64,3.85,8.67,10.49C452.21,362.64,452.18,373.46,452.18,384.28Z"
+                            />
+                            <path
+                              d="M145,384.26c0,5.31.08,10.63,0,15.94-.1,5.55-3.41,9.2-8.25,9.35-5,.15-8.68-3.65-8.73-9.38q-.14-16.19,0-32.38c.06-5.73,3.74-9.51,8.76-9.34,4.84.16,8.12,3.81,8.22,9.37S145,378.78,145,384.26Z"
+                            />
+                            <path
+                              d="M384,384c0,5.48.1,11,0,16.43s-3.64,9.14-8.48,9.15-8.42-3.68-8.47-9.11q-.17-16.44,0-32.87c.06-5.46,3.62-9.14,8.45-9.15s8.38,3.67,8.51,9.11S384,378.5,384,384Z"
+                            />
+                            <path
+                              d="M281.72,111a25.55,25.55,0,0,1,25.21-25.66A25.61,25.61,0,1,1,307,136.5,25.44,25.44,0,0,1,281.72,111Zm25.31-8.5a8.38,8.38,0,0,0-8.2,8.77,8.18,8.18,0,0,0,8.31,8.1,8.47,8.47,0,0,0,8.59-8.45A8.64,8.64,0,0,0,307,102.45Z"
+                            />
+                            <path
+                              d="M350,110.86a25.54,25.54,0,1,1,25.7,25.65A25.65,25.65,0,0,1,350,110.86Zm34,.15a8.48,8.48,0,0,0-16.95-.42A8.48,8.48,0,1,0,384,111Z"
+                            />
+                            <path
+                              d="M469.21,110.84a25.47,25.47,0,0,1-25.65,25.67,25.61,25.61,0,1,1,25.65-25.67ZM444,119.31a8.23,8.23,0,0,0,8.17-8.75,8.42,8.42,0,0,0-8.39-8.12,8.66,8.66,0,0,0-8.54,8.59A8.47,8.47,0,0,0,444,119.31Z"
+                            />
+                          </g>
+                        </g>
+                      </svg>
+                    </div>
+                  <!-- === music title === -->
+                  <div class="player-context-container">
+                      <div id="title" class="player-title">${user.name}</div>
+                      <div id="artist" class="text-[12px] player-des">
+                          خدمات ارائه شده : ${user.service}
+                      </div>
+                      <audio class="voice-message-audio" src="${user.voice}"></audio>
+                  </div>
+                  <!-- ==== music player controlers ==== -->
+                  <div class="player-controls-container">
+                      <button class="player-controls player-button">
+                          <i onclick='playVoiceMessage(event)' class="bi bi-play-circle-fill"></i> 
+                      </button>
+                  </div>
+              </div>
+              <!--end::voice player-->
+          </div>
+      </div>
+  `;
 });
 
-function pauseAudio(audio) {
-  audio.pause(); 
-  // btn.classList.replace('bi-pause-fill', 'bi-play');
+function playVoiceMessage(event) {
+  let playBtn = event.target;
+  let voiceMessageContainer = event.target.closest('.player-container');
+  let voiceMessageAudio = voiceMessageContainer.querySelector('audio');
+
+  // Pause any currently playing audio
+  let currentPlaying = document.querySelector('.bi-pause-circle-fill.isplaying');
+  if (currentPlaying && currentPlaying !== playBtn) {
+      let currentPlayingAudio = currentPlaying.closest('.player-container').querySelector('audio');
+      pauseVoice(currentPlaying, currentPlayingAudio);
+  }
+
+  if (playBtn.classList.contains('bi-play-circle-fill')) {
+      playVoice(playBtn, voiceMessageAudio);
+  } else {
+      pauseVoice(playBtn, voiceMessageAudio);
+  }
 }
 
-function playAudio(audio) {
-  audio.play();
-  // btn.classList.replace('bi-play', 'bi-pause-fill');
+function playVoice(btn, voice) {
+  voice.play();
+  btn.classList.replace('bi-play-circle-fill', 'bi-pause-circle-fill');
+  btn.classList.add('isplaying');
 }
+
+function pauseVoice(btn, voice) {
+  voice.pause();
+  btn.classList.replace('bi-pause-circle-fill', 'bi-play-circle-fill');
+  btn.classList.remove('isplaying');
+}
+
 

@@ -13,6 +13,7 @@ let datePickerContainer = document.querySelector('#date-picker-container');
 let textWarning = document.querySelector('.text-warn');
 
 let servicesData = {
+
 "خدمات نظافتی": [
 
     'نطافت منزل',

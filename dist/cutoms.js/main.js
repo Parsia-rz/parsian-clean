@@ -1,14 +1,3 @@
-const darkModeBtn = document.querySelector('.dark-mode-toggle');
-darkModeBtn.addEventListener('click' , function(){
-    if(darkModeBtn.getAttribute('data-kt-value') === 'dark'){
-        darkModeBtn.setAttribute('data-kt-value' , 'light');
-        darkModeBtn.innerHTML = 'sunny';
-    } else{
-        darkModeBtn.setAttribute('data-kt-value' , 'dark');
-        darkModeBtn.innerHTML = 'dark_mode';
-    }
-    
-})
 
 // sidenav 
 let sidenavAccordionBtn = document.querySelectorAll('.sidenav-item');
@@ -18,16 +7,14 @@ sidenavAccordionBtn.forEach(function(btn){
   })
 });
 
-// function handleScroll() {
-//   let navbar = document.querySelector('.main-navbar');
-//   let scrollValue = window.scrollY;
-  
-//   if (scrollValue > 300) {
-//     navbar.classList.add('active')
-//   } else {
-//     navbar.classList.remove('active')
-//   }
-// }
+// add active class to each nav link 
+const path = window.location.pathname;
+const page = path.split("/").pop();
+const navLinks = document.querySelectorAll('nav .nav-link');
+navLinks.forEach((link) => {
+  if(link.getAttribute("href") === page) {
+    link.parentElement.classList.add('active')
+  }
+})
 
-// window.addEventListener('scroll', handleScroll);
 

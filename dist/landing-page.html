@@ -3,7 +3,7 @@
   <!--begin::Head-->
   <head>
     <base href="" />
-    <title>پرستار سالمند | نگهداری سالمند در منزل</title>
+    <title>پرستار سالمند در منزل 👨‍🦳 | مراقبت و نگهداری از سالمند در منزل (شبانه روزی و روزانه)</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:locale" content="en_US" />
@@ -45,12 +45,14 @@
     <div class="d-flex flex-column flex-root position-relative">
       <!--begin::header-->
       <nav class="navbar navbar-expand-lg">
+        <!-- scroll progress -->
+         <div class="scroll-progress-wrapper"></div>
         <div class="container-xxl">
           <a style="margin-left: 30px" class="navbar-brand" href="#"
             ><img
-              style="width: 100px"
-              src="../dist/assets/logos/brands/parsian-logo.svg"
-              alt=""
+              class="navbar-brand__logo"
+              src="../dist/assets/brand-logo/parsianclean-logo-edited.svg"
+              alt="لوگوی پاکیزه کاران پارسیان"
           /></a>
           <button
             class="btn sidenav-btn d-block d-lg-none order-first"
@@ -173,7 +175,7 @@
         >
           <img
             style="width: 75px"
-            src="../dist/assets/logos/brands/parsian-logo.svg"
+            src="../dist/assets/brand-logo/parsianclean-logo-edited.svg"
             alt=""
           />
           <button
@@ -2948,38 +2950,15 @@
       </i>
     </div>
     <!--end::Scrolltop-->
-    <!--begin::list number-->
-    <!-- <div class="number-list-container">
-      <div class="number-list-content">
-        <div class="number-list">
-          <a class="number-list__num" href="tel:+02122892872">021-22892872</a>
-          <a class="number-list__num" href="tel:+02122892873">021-22892873</a>
-          <a class="number-list__num" href="tel:+02188467252">021-88467252</a>
-          <a class="number-list__num" href="tel:+02188467249">021-88467249</a>
-          <a class="number-list__num" href="tel:+02186026859">021-86026859</a>
-          <a class="number-list__num" href="tel:+9809122170810">09122170810</a>
-        </div>
-        <button class="number-list-close-btn"><i class="bi bi-x"></i></button>
-      </div>
-    </div> -->
-    <!--end::list number-->
-
     <!--end::اصلی-->
     <!--begin::Javascript-->
     <script>
       var hostUrl = "../dist/assets/";
     </script>
-    <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-    <script src="../dist/assets/plugins/global/plugins.bundle.js"></script>
     <script src="../dist/assets/js/scripts.bundle.js"></script>
-    <!--end::Global Javascript Bundle-->
-    <!--begin::Vendors Javascript(used for this page only)-->
-    <script src="../dist/assets/plugins/custom/fslightbox/fslightbox.bundle.js"></script>
-    <script src="../dist/assets/plugins/custom/typedjs/typedjs.bundle.js"></script>
-    <!--end::Vendors Javascript-->
-    <!--begin::سفارشی Javascript(used for this page only)-->
+    <script src="../dist/assets/plugins/global/plugins.bundle.js"></script>
     <script src="../dist/assets/js/custom/landing.js"></script>
-    <script src="../dist/assets/js/custom/pages/pricing/general.js"></script>
+    <script src="../dist/cutoms.js/scroll-progress.js"></script>
     <script src="../dist/cutoms.js/jquery-3.7.1.min.js"></script>
     <script src="../dist/cutoms.js/forms.js"></script>
     <script src="../dist/cutoms.js/owl.carousel.min.js"></script>
@@ -2989,6 +2968,7 @@
     <script src="../dist/cutoms.js/voice-player.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="../dist/cutoms.js/swiper.js"></script>
+    <script src="../dist/cutoms.js/sweetalert2@11.js"></script>
     <!--end::سفارشی Javascript-->
     <!--end::Javascript-->
   </body>
